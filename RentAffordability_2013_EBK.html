@@ -33,7 +33,7 @@
             p.getHeader().then(h => {
                 const map = new maplibregl.Map({
                     container: 'map',
-                    zoom: h.minZoom,
+                    zoom: h.minZoom-.5, // hack to make this fit well in an iframe
                     center: [h.centerLon, h.centerLat],
                     style: {
                         version:8,
