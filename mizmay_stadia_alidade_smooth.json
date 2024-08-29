@@ -1209,6 +1209,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
+      "maxzoom": 13,
       "filter": [
         "all",
         ["==", "$type", "Point"],
