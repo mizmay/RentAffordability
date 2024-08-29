@@ -857,7 +857,7 @@
         "text-letter-spacing": 0.1,
         "text-font": ["Stadia Regular"],
         "text-justify": "center",
-        "visibility": "none",
+        "visibility": "visible",
         "text-offset": [0.5, 0],
         "text-anchor": "center",
         "text-field": [
