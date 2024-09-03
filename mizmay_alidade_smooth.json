@@ -524,6 +524,12 @@
       }
     },
     {
+      "id": "rent-affordability-raster",
+      "type": "raster",
+      "source":"sf_rent",
+      "visibility": "visible"
+    },
+    {
       "id": "highway_name_other",
       "type": "symbol",
       "source": "openmaptiles",
