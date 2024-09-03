@@ -3,32 +3,29 @@
   "name": "Alidade Smooth",
   "metadata": {
     "mapbox:autocomposite": false,
-    "openmaptiles:version": "3.x"
+    "openmaptiles:version": "3.x",
+    "maputnik:renderer": "mlgljs"
   },
-  "center": [10.184401828277087, -1.1368683772161605e-13],
-  "zoom": 0.89026415,
-  "bearing": 0,
-  "pitch": 0,
   "sources": {
     "openmaptiles": {
       "type": "vector",
       "scheme": "xyz",
       "url": "https://tiles.stadiamaps.com/data/openmaptiles.json"
-    }, 
-    "sf_rent": {
-        "type": "raster",
-        "url": "pmtiles://https://mizmay.github.io/RentAffordability/RentAffordability-OneBr.pmtiles",
-        "attribution": "© Stephanie May",
-        "tileSize": 256
-    }
     },
-  "sprite": "https://tiles.stadiamaps.com/styles/alidade-smooth-dark/sprite",
+    "sf_rent": {
+      "type": "raster",
+      "url": "pmtiles://https://mizmay.github.io/RentAffordability/RentAffordability-OneBr.pmtiles",
+      "attribution": "© Stephanie May",
+      "tileSize": 256
+    }
+  },
+  "sprite": "https://tiles.stadiamaps.com/styles/alidade-smooth/sprite",
   "glyphs": "https://tiles.stadiamaps.com/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "hsl(0, 0%, 20%)"}
+      "paint": {"background-color": "rgb(242,243,240)"}
     },
     {
       "id": "park_fill",
@@ -37,7 +34,7 @@
       "source-layer": "park",
       "filter": ["==", "$type", "Polygon"],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "hsla(109, 41%, 55%, 8%)"}
+      "paint": {"fill-color": "rgb(230, 233, 229)"}
     },
     {
       "id": "landcover_ice_shelf",
@@ -51,7 +48,7 @@
         ["==", "subclass", "ice_shelf"]
       ],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "hsla(0, 0%, 75%, 60%)", "fill-opacity": 0.7}
+      "paint": {"fill-color": "hsl(0, 0%, 97%)", "fill-opacity": 0.7}
     },
     {
       "id": "landcover_glacier",
@@ -66,7 +63,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "fill-color": "hsla(0, 0%, 75%, 50%)",
+        "fill-color": "hsl(0, 0%, 98%)",
         "fill-opacity": {"base": 1, "stops": [[0, 1], [8, 0.5]]}
       }
     },
@@ -83,7 +80,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "fill-color": "hsla(60, 8%, 22%, 20%)",
+        "fill-color": "hsl(60, 8%, 92%)",
         "fill-opacity": {"base": 0.6, "stops": [[8, 0.8], [9, 0.6]]}
       }
     },
@@ -96,7 +93,7 @@
       "filter": ["all", ["==", "$type", "Polygon"], ["==", "class", "wood"]],
       "layout": {"visibility": "visible"},
       "paint": {
-        "fill-color": "hsla(120, 23%, 59%, 10%)",
+        "fill-color": "rgb(220,224,220)",
         "fill-opacity": {"base": 1, "stops": [[8, 0], [12, 1]]}
       }
     },
@@ -109,7 +106,7 @@
       "filter": ["all", ["==", "$type", "Polygon"], ["==", "subclass", "park"]],
       "layout": {"visibility": "visible"},
       "paint": {
-        "fill-color": "hsla(120, 23%, 55%, 8%)",
+        "fill-color": "rgb(210,224,210)",
         "fill-opacity": {"base": 1, "stops": [[8, 0], [12, 0.8]]}
       }
     },
@@ -125,7 +122,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(353, 34%, 80%, 30%)",
+        "line-color": "rgb(230, 204, 207)",
         "line-width": {"base": 1.3, "stops": [[3, 1], [22, 15]]},
         "line-blur": 0.4,
         "line-dasharray": [2, 2],
@@ -140,7 +137,7 @@
       "filter": ["==", "admin_level", 2],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "hsla(353, 34%, 80%, 30%)",
+        "line-color": "rgb(230, 204, 207)",
         "line-width": {"base": 1.1, "stops": [[3, 1], [22, 20]]},
         "line-blur": {"base": 1, "stops": [[0, 0.4], [22, 4]]},
         "line-opacity": 1
@@ -153,7 +150,7 @@
       "source-layer": "water",
       "filter": ["==", "$type", "Polygon"],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#222", "fill-antialias": true}
+      "paint": {"fill-color": "#c1c9cc", "fill-antialias": true}
     },
     {
       "id": "waterway",
@@ -162,7 +159,7 @@
       "source-layer": "waterway",
       "filter": ["==", "$type", "LineString"],
       "layout": {"visibility": "visible"},
-      "paint": {"line-color": "#222"}
+      "paint": {"line-color": "hsl(195, 17%, 78%)"}
     },
     {
       "id": "building",
@@ -172,8 +169,8 @@
       "minzoom": 12,
       "filter": ["==", "$type", "Polygon"],
       "paint": {
-        "fill-color": "hsl(95, 5%, 22%)",
-        "fill-outline-color": "hsla(0, 0%, 40%, 50%)",
+        "fill-color": "hsl(95, 5%, 84%)",
+        "fill-outline-color": "rgb(219, 219, 218)",
         "fill-antialias": true
       }
     },
@@ -194,7 +191,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(0, 0%, 40%, 20%)",
+        "line-color": "rgb(212, 212, 212)",
         "line-width": {"base": 1.4, "stops": [[5.8, 0], [6, 3], [20, 35]]},
         "line-opacity": 1
       }
@@ -216,29 +213,8 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(60, 1%, 21%, 10%)",
+        "line-color": "rgb(234,234,234)",
         "line-width": {"base": 1.4, "stops": [[4, 2], [6, 1.3], [20, 30]]}
-      }
-    },
-    {
-      "id": "highway_path-copy",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["in", "class", "path", "footway", "construction"]
-      ],
-      "layout": {
-        "line-cap": "round",
-        "line-join": "round",
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "hsl(0, 0%, 30%)",
-        "line-width": {"base": 1.2, "stops": [[13, 1], [20, 10]]},
-        "line-opacity": 0.9
       }
     },
     {
@@ -257,7 +233,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsl(0, 0%, 30%)",
+        "line-color": "hsl(0, 0%, 91%)",
         "line-width": {"base": 1.2, "stops": [[13, 1], [20, 10]]},
         "line-opacity": 0.9
       }
@@ -281,7 +257,12 @@
       "paint": {
         "line-color": {
           "base": 1,
-          "stops": [[13, "hsl(0, 0%, 32%)"], [16, "hsl(0, 0%, 30%)"]]
+          "stops": [
+            [8, "hsl(0, 0%, 86%)"],
+            [12, "hsl(0, 0%, 86%)"],
+            [13, "hsl(0, 0%, 81%)"],
+            [16, "hsl(0, 0%, 80%)"]
+          ]
         },
         "line-width": {"base": 1.55, "stops": [[13, 1], [18, 8]]},
         "line-opacity": 0.9
@@ -304,7 +285,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(0, 0%, 30%, 80%)",
+        "line-color": "rgb(213, 213, 213)",
         "line-dasharray": [12, 0],
         "line-width": {"base": 1.3, "stops": [[10, 3], [20, 20]]}
       }
@@ -326,7 +307,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(60, 1%, 16%, 90%)",
+        "line-color": "#efefef",
         "line-width": {"base": 1.3, "stops": [[10, 2], [20, 18]]}
       }
     },
@@ -346,7 +327,7 @@
         "line-join": "round",
         "visibility": "visible"
       },
-      "paint": {"line-color": "hsla(0, 0%, 32%, 70%)", "line-width": 1}
+      "paint": {"line-color": "hsla(0, 0%, 85%, 0.69)", "line-width": 1}
     },
     {
       "id": "highway_motorway_casing",
@@ -369,7 +350,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(0, 0%, 30%, 80%)",
+        "line-color": "rgb(213, 213, 213)",
         "line-width": {"base": 1.4, "stops": [[5.8, 0], [6, 3], [20, 30]]},
         "line-dasharray": [2, 0],
         "line-opacity": 1
@@ -396,7 +377,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(60, 1%, 16%, 90%)",
+        "line-color": "#efefef",
         "line-width": {"base": 1.4, "stops": [[4, 2], [6, 1.3], [20, 25]]}
       }
     },
@@ -417,7 +398,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(0, 0%, 35%, 0.53)",
+        "line-color": "hsla(0, 0%, 85%, 0.53)",
         "line-width": {"base": 1.4, "stops": [[4, 0.75], [5, 1.5]]}
       }
     },
@@ -433,7 +414,7 @@
         ["all", ["==", "class", "rail"], ["has", "service"]]
       ],
       "layout": {"visibility": "visible", "line-join": "round"},
-      "paint": {"line-color": "#545353", "line-width": 3}
+      "paint": {"line-color": "#ddd", "line-width": 3}
     },
     {
       "id": "railway_service_dashline",
@@ -449,7 +430,7 @@
       ],
       "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
-        "line-color": "#7f7d7e",
+        "line-color": "#fafafa",
         "line-width": 2,
         "line-dasharray": [3, 3]
       }
@@ -467,7 +448,7 @@
       ],
       "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
-        "line-color": "#545353",
+        "line-color": "#ddd",
         "line-width": {"base": 1.3, "stops": [[16, 3], [20, 7]]}
       }
     },
@@ -484,7 +465,7 @@
       ],
       "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
-        "line-color": "#7f7d7e",
+        "line-color": "#fafafa",
         "line-width": {"base": 1.3, "stops": [[16, 2], [20, 6]]},
         "line-dasharray": [3, 3]
       }
@@ -496,7 +477,7 @@
       "source-layer": "aeroway",
       "filter": ["==", "$type", "LineString"],
       "layout": {"visibility": "visible"},
-      "paint": {"line-color": "#545353"}
+      "paint": {"line-color": "#ddd"}
     },
     {
       "id": "highway_motorway_bridge_casing",
@@ -515,7 +496,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(0, 0%, 30%, 80%)",
+        "line-color": "rgb(213, 213, 213)",
         "line-width": {"base": 1.4, "stops": [[5.8, 0], [6, 5], [20, 35]]},
         "line-dasharray": [2, 0],
         "line-opacity": 1
@@ -538,15 +519,9 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-color": "hsla(60, 1%, 16%, 90%)",
+        "line-color": "#efefef",
         "line-width": {"base": 1.4, "stops": [[4, 2], [6, 1.3], [20, 30]]}
       }
-    },
-    {
-      "id": "rent-affordability-raster",
-      "type": "raster",
-      "source":"sf_rent",
-      "visibility": "visible"
     },
     {
       "id": "highway_name_other",
@@ -593,8 +568,8 @@
         ]
       },
       "paint": {
-        "text-color": "#aaa",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "#888",
+        "text-halo-color": "#fefefe",
         "text-translate": [0, 0],
         "text-halo-width": 2,
         "text-halo-blur": 1
@@ -634,7 +609,7 @@
       },
       "paint": {
         "text-color": "#999",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1,
         "text-halo-blur": 1
       }
@@ -670,7 +645,7 @@
       },
       "paint": {
         "text-color": "#999",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 2,
         "text-halo-blur": 1
       }
@@ -706,7 +681,7 @@
       },
       "paint": {
         "text-color": "#999",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 2,
         "text-halo-blur": 1
       }
@@ -748,7 +723,7 @@
       },
       "paint": {
         "text-color": "#aaa",
-        "text-halo-color": "#333",
+        "text-halo-color": "#fff",
         "text-translate": [0, 0],
         "text-halo-width": 1,
         "text-halo-blur": 1
@@ -790,7 +765,7 @@
       },
       "paint": {
         "text-color": "#aaa",
-        "text-halo-color": "#333",
+        "text-halo-color": "#fff",
         "text-translate": [0, 0],
         "text-halo-width": 1,
         "text-halo-blur": 1
@@ -832,7 +807,7 @@
       },
       "paint": {
         "text-color": "#aaa",
-        "text-halo-color": "#333",
+        "text-halo-color": "#fff",
         "text-translate": [0, 0],
         "text-halo-width": 1,
         "text-halo-blur": 1
@@ -878,7 +853,7 @@
       },
       "paint": {
         "text-color": "hsl(214.3, 11.3%, 70%)",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 2,
         "text-halo-blur": 1
       }
@@ -901,7 +876,7 @@
         "symbol-spacing": 350,
         "text-font": ["Stadia Regular"],
         "symbol-placement": "line",
-        "visibility": "none",
+        "visibility": "visible",
         "text-rotation-alignment": "map",
         "text-pitch-alignment": "viewport",
         "text-field": [
@@ -921,8 +896,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#ccc",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "#777",
+        "text-halo-color": "#fefefe",
         "text-translate": [0, 0],
         "text-halo-width": 2,
         "text-halo-blur": 1
@@ -1035,9 +1010,9 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
+        "text-color": "rgb(117, 129, 145)",
         "text-opacity": 0.7,
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 2,
         "text-halo-blur": 1
       }
@@ -1075,8 +1050,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(117, 129, 145)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 2,
         "text-halo-blur": 1,
         "icon-opacity": 0.6
@@ -1112,8 +1087,8 @@
         "visibility": "none"
       },
       "paint": {
-        "text-color": "#aaa",
-        "text-halo-color": "#333",
+        "text-color": "#888",
+        "text-halo-color": "#fff",
         "text-translate": [0, 0],
         "text-halo-width": 2,
         "text-halo-blur": 1
@@ -1128,7 +1103,7 @@
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "town"]],
       "layout": {
         "text-size": {"stops": [[3, 10], [14, 13]], "base": 1},
-        "icon-image": {"base": 1, "stops": [[0, "circle-alt-11"], [8, ""]]},
+        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [8, ""]]},
         "symbol-avoid-edges": true,
         "text-font": ["Stadia Regular"],
         "text-justify": "left",
@@ -1153,8 +1128,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(117, 129, 145)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 2,
         "text-halo-blur": 1,
         "icon-opacity": 0.6
@@ -1172,7 +1147,7 @@
       ],
       "layout": {
         "text-size": {"stops": [[3, 10], [14, 18]], "base": 1},
-        "icon-image": {"base": 1, "stops": [[0, "circle-alt-11"], [8, ""]]},
+        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [8, ""]]},
         "text-transform": "uppercase",
         "text-font": ["Stadia Regular"],
         "text-justify": "left",
@@ -1197,8 +1172,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(117, 129, 145)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1,
         "text-halo-blur": 1,
         "icon-opacity": 0.7
@@ -1209,7 +1184,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "maxzoom": 11,
+      "minzoom": 12,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -1222,7 +1197,7 @@
       ],
       "layout": {
         "text-size": {"stops": [[4, 11], [12, 18], [14, 22]], "base": 1},
-        "icon-image": {"base": 1, "stops": [[0, "circle-alt-11"], [8, ""]]},
+        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [8, ""]]},
         "text-transform": "uppercase",
         "text-font": ["Stadia Regular"],
         "text-justify": "left",
@@ -1247,8 +1222,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(117, 129, 145)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1,
         "text-halo-blur": 1,
         "icon-opacity": 0.7
@@ -1267,12 +1242,12 @@
       ],
       "layout": {
         "text-size": {"stops": [[3, 13], [14, 24]], "base": 1},
-        "icon-image": {"base": 1, "stops": [[0, "star-alt-11"], [8, ""]]},
+        "icon-image": {"base": 1, "stops": [[0, "star-11"], [8, ""]]},
         "text-transform": "uppercase",
         "symbol-avoid-edges": true,
         "text-font": ["Stadia Regular"],
         "text-justify": "left",
-        "visibility": "none",
+        "visibility": "visible",
         "text-offset": [0.5, 0.2],
         "icon-size": 1,
         "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
@@ -1293,8 +1268,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(117, 129, 145)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1,
         "text-halo-blur": 1,
         "icon-opacity": 0.7
@@ -1317,11 +1292,11 @@
       ],
       "layout": {
         "text-size": {"stops": [[3, 13], [14, 24]], "base": 1},
-        "icon-image": {"base": 1, "stops": [[0, "star-alt-11"], [8, ""]]},
+        "icon-image": {"base": 1, "stops": [[0, "star-11"], [8, ""]]},
         "text-transform": "uppercase",
         "text-font": ["Stadia Regular"],
         "text-justify": "left",
-        "visibility": "none",
+        "visibility": "visible",
         "text-offset": [0.5, 0.2],
         "icon-size": 1,
         "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
@@ -1342,8 +1317,8 @@
         "text-line-height": 1.55
       },
       "paint": {
-        "text-color": "#9aa2ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(117, 129, 145)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1,
         "text-halo-blur": 1,
         "icon-opacity": 0.7
@@ -1357,7 +1332,7 @@
       "maxzoom": 12,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "state"]],
       "layout": {
-        "visibility": "none",
+        "visibility": "visible",
         "text-field": [
           "concat",
           ["get", "name:latin"],
@@ -1379,8 +1354,8 @@
         "text-size": 10
       },
       "paint": {
-        "text-color": "#97a1ac",
-        "text-halo-color": "hsl(0, 0%, 20%)",
+        "text-color": "rgb(113, 129, 144)",
+        "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1,
         "text-halo-blur": 1
       }
@@ -1398,7 +1373,7 @@
         ["all", ["==", "class", "country"], [">=", "rank", 2]]
       ],
       "layout": {
-        "visibility": "none",
+        "visibility": "visible",
         "text-field": [
           "concat",
           ["get", "name:latin"],
@@ -1423,8 +1398,11 @@
       },
       "paint": {
         "text-halo-width": 1.4,
-        "text-halo-color": "hsl(0, 0%, 15%)",
-        "text-color": {"base": 1, "stops": [[3, "#d4d4dc"], [4, "#c4c4c4"]]}
+        "text-halo-color": "rgba(236,236,234,0.7)",
+        "text-color": {
+          "base": 1,
+          "stops": [[3, "rgb(157,169,177)"], [4, "rgb(153, 153, 153)"]]
+        }
       }
     },
     {
@@ -1440,7 +1418,7 @@
         ["all", ["<=", "rank", 1], ["==", "class", "country"]]
       ],
       "layout": {
-        "visibility": "none",
+        "visibility": "visible",
         "text-field": [
           "concat",
           ["get", "name:latin"],
@@ -1465,8 +1443,11 @@
       },
       "paint": {
         "text-halo-width": 1.4,
-        "text-halo-color": "hsl(0, 0%, 15%)",
-        "text-color": {"base": 1, "stops": [[3, "#d4d4dc"], [4, "#c4c4c4"]]}
+        "text-halo-color": "rgba(236,236,234,0.7)",
+        "text-color": {
+          "base": 1,
+          "stops": [[3, "rgb(157,169,177)"], [4, "rgb(153, 153, 153)"]]
+        }
       }
     },
     {
@@ -1482,15 +1463,15 @@
         "text-size": 16,
         "text-max-width": 6.25,
         "text-transform": "uppercase",
-        "visibility": "none",
+        "visibility": "visible",
         "text-letter-spacing": 0.1
       },
       "paint": {
         "text-halo-width": 1.4,
-        "text-halo-color": "hsl(0, 0%, 15%)",
+        "text-halo-color": "rgba(236,236,234,0.7)",
         "text-color": "rgb(157,169,177)"
       }
     }
   ],
-  "id": "6sf1oig"
+  "id": "xu4q2rp"
 }
