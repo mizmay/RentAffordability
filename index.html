@@ -12,6 +12,11 @@
             #map {
                 height:100%; width:100%;
             }
+            .maplibregl-popup-content > * {
+                /* make popup content denser */
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
         </style>
     </head>
     <body>
@@ -22,7 +27,7 @@
             let protocol = new pmtiles.Protocol();
             maplibregl.addProtocol("pmtiles",protocol.tile);
 
-            let PMTILES_URL = "https://mizmay.github.io/RentAffordability/RentAffordability-OneBr.pmtiles";
+            let PMTILES_URL = "./RentAffordability-OneBr.pmtiles";
 
             const p = new pmtiles.PMTiles(PMTILES_URL);
 
@@ -30,12 +35,60 @@
             protocol.add(p);
 
             // we first fetch the header so we can get the center lon, lat of the map.
-            p.getHeader().then(h => {
+            p.getHeader().then(async h => {
                 const map = new maplibregl.Map({
                     container: 'map',
                     zoom: h.minZoom-.5, // hack to make this fit well in an iframe
                     center: [h.centerLon, h.centerLat],
-                    style: "https://mizmay.github.io/RentAffordability/mizmay_alidade_smooth.json"
+                    style: "./mizmay_alidade_smooth.json"
+                });
+
+                // fetch the GeoJSON data for neighborhood rent prices
+                let res = await fetch('./SanFranciscoRentAffordability/SF_rent_WGS84.geojson');
+                let data = await res.json();
+
+                // add the geojson data as a source + layer to the map
+                map.addSource("sf_rent_vector", { type: "geojson", data });
+                map.addLayer({
+                    "id": "rent-affordability-vector",
+                    "source": "sf_rent_vector",
+                    "type": "fill",
+                    "paint": {
+                        // make the geojson polygons transparent - they're only
+                        // needed for on-click interactions, not for visuals
+                        "fill-color": "rgba(0, 0, 0, 0)"
+                    }
+                });
+
+                map.on('click', (event) => {
+                    // query features under the cursor, and filter to just the rent neighborhoods
+                    let features = map.queryRenderedFeatures(event.point)
+                        .filter(feature => feature.layer.source === "sf_rent_vector");
+
+                    if (features.length === 0) {
+                        // no neighborhood features found under cursor
+                        return;
+                    }
+
+                    let feature = features[0];
+
+                    if (feature.properties.sample_siz <= 0.0) {
+                        // no data for this neighborhood (e.g. Golden Gate Park)
+                        return;
+                    }
+
+                    // create a popup, set its map position and html content, and add it to the map
+                    let popup = new maplibregl.Popup();
+                    popup.setLngLat(event.lngLat);
+                    popup.setHTML(`
+                        <h3>${feature.properties.Nhood}</h3>
+                        <p>
+                            At minimum wage, it would take <b>${feature.properties.FT_Jobs}</b>
+                            full time jobs to pay rent on a one-bedroom here.
+                        </p>
+                    `);
+                    popup.setMaxWidth(290); // slightly wider than default
+                    popup.addTo(map);
                 });
             });
         </script>
