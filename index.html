@@ -12,10 +12,15 @@
             #map {
                 height:100%; width:100%;
             }
+            .maplibregl-popup > * {
+                border-radius: 6px;
+                opacity: 0.75;
+            }
             .maplibregl-popup-content > * {
                 /* make popup content denser */
-                margin-top: 0.5em;
-                margin-bottom: 0.5em;
+                margin: 0;
+                padding: 0;
+                width: 180px;
             }
         </style>
     </head>
@@ -79,16 +84,15 @@
                     }
 
                     // create a popup, set its map position and html content, and add it to the map
-                    let popup = new maplibregl.Popup();
+                    let popup = new maplibregl.Popup({ closeButton: false });
                     popup.setLngLat(event.lngLat);
                     popup.setHTML(`
                         <h3>${feature.properties.Nhood}</h3>
                         <p>
-                            At minimum wage, it would take <b>${feature.properties.FT_Jobs}</b>
-                            full time jobs to pay rent on a one-bedroom here.
+                            At minimum wage, you need <b>${feature.properties.FT_Jobs}</b>
+                            full time jobs to pay rent on a one bedroom apartment.
                         </p>
                     `);
-                    popup.setMaxWidth(290); // slightly wider than default
                     popup.addTo(map);
                 });
             });
