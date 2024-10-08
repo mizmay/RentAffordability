@@ -24,21 +24,22 @@
         <script type="text/javascript">
 
             // add the PMTiles plugin to the maplibregl global.
-            let protocol = new pmtiles.Protocol();
-            maplibregl.addProtocol("pmtiles",protocol.tile);
+            let pm = new pmtiles.Protocol();
+            maplibregl.addProtocol("pmtiles",pm.tile);
 
-            let PMTILES_URL = "./RentAffordability-OneBr.pmtiles";
+            // for development purposes, need to the fully specified URL to test locally
+            let PMTILES_URL = "https://mizmay.github.io/RentAffordability/RentAffordability-OneBr.pmtiles";
 
             const p = new pmtiles.PMTiles(PMTILES_URL);
 
             // this is so we share one instance across the JS code and the map renderer
-            protocol.add(p);
+            pm.add(p);
 
             // we first fetch the header so we can get the center lon, lat of the map.
             p.getHeader().then(async h => {
                 const map = new maplibregl.Map({
                     container: 'map',
-                    zoom: h.minZoom-.5, // hack to make this fit well in an iframe
+                    zoom: h.minZoom-.5, // make this fit well in an iframe
                     center: [h.centerLon, h.centerLat],
                     style: "./mizmay_alidade_smooth.json"
                 });
@@ -61,7 +62,7 @@
                 });
 
                 map.on('click', (event) => {
-                    // query features under the cursor, and filter to just the rent neighborhoods
+                    // of all possible features under the cursor, filter to just the rent neighborhoods
                     let features = map.queryRenderedFeatures(event.point)
                         .filter(feature => feature.layer.source === "sf_rent_vector");
 
